@@ -251,4 +251,64 @@ npm run dev
 | [Vite](https://vitejs.dev) | Build tool & dev server |
 | [UUID](https://github.com/uuidjs/uuid) | Unique ID generation |
 
+## Assumptions
 
+To keep the prototype focused, the following assumptions were made during development:
+
+**1. Backend & Data Persistence**
+
+- No real backend exists; all API interactions use a mock API layer.
+
+- Workflow definitions are kept in-memory only and are not persisted to a database.
+
+- File export/import is not required unless implemented as a future improvement.
+
+**2. Workflow Structure**
+
+- A valid workflow must contain exactly one Start node and at least one End node.
+
+- All nodes must be reachable from the Start node for simulation to run.
+
+- Only linear or mildly branched workflows are supported; advanced conditional logic (IF/ELSE, parallel paths) is outside scope.
+
+- Cycles (loops) are considered invalid and are not supported.
+
+**3. Node Behavior**
+
+- Each node executes once during simulation; no retry or async behavior is modeled.
+
+- Node actions are synchronous and return mock results immediately.
+
+- Automated Node actions are based on a static list of mock automations and do not call external APIs.
+
+**4. Simulation Constraints**
+
+- The simulation results are deterministic and do not account for:
+
+- Time delays
+
+- External dependencies
+
+- Human input or real approvals
+
+- The simulation engine assumes that all required node fields are filled by the user.
+
+**5. UI/UX Scope**
+
+- The visual design follows a functional, developer-friendly layout rather than a pixel-perfect UI.
+
+- Mobile responsiveness and accessibility (ARIA labels, screen reader support) are not prioritized for this prototype.
+
+- Collaboration, real-time updates, and multi-user editing are out of scope.
+
+**6. Performance Considerations**
+
+- The canvas is optimized for small to mid-size workflows (20–50 nodes).
+
+- Large-scale enterprise workflows (hundreds of nodes) would require virtualization and additional optimizations not included here.
+
+**7. Security & Authentication**
+
+- No authentication, authorization, or role-based access control is included.
+
+- All interactions assume a trusted HR admin user.
